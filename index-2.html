@@ -1,0 +1,1005 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abi — Frontend Developer</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#0b0b0b;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:25px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+    mix-blend-mode:difference;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+    font-size:14px;
+}
+
+.nav-links a{
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:1px;
+    bottom:-5px;
+    left:0;
+    background:white;
+    transition:.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    height:100vh;
+    min-height:700px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    overflow:hidden;
+}
+
+.hero-content{
+    width:100%;
+    position:relative;
+    z-index:2;
+}
+
+.small-text{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    margin-bottom:30px;
+    opacity:.7;
+}
+
+.hero-title{
+    font-size:clamp(60px,11vw,180px);
+    line-height:.82;
+    font-weight:900;
+    letter-spacing:-8px;
+    text-transform:uppercase;
+}
+
+.hero-title span{
+    display:block;
+}
+
+.hero-title .outline{
+    color:transparent;
+    -webkit-text-stroke:1px white;
+}
+
+.hero-description{
+    max-width:500px;
+    margin-top:45px;
+    font-size:18px;
+    line-height:1.6;
+    color:#aaa;
+}
+
+.hero-circle{
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    right:5%;
+    top:20%;
+    background:
+        url("https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop")
+        center/cover;
+    filter:grayscale(100%);
+    opacity:.55;
+}
+
+.scroll-down{
+    position:absolute;
+    bottom:35px;
+    left:5%;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+    min-height:100vh;
+    padding:180px 5%;
+    display:flex;
+    align-items:center;
+}
+
+.about-inner{
+    max-width:1200px;
+}
+
+.section-label{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    color:#777;
+    margin-bottom:40px;
+}
+
+.about-text{
+    font-size:clamp(35px,5vw,80px);
+    line-height:1.05;
+    font-weight:700;
+    letter-spacing:-3px;
+}
+
+.about-text .muted{
+    color:#444;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects{
+    padding:150px 5%;
+}
+
+.projects-title{
+    font-size:clamp(60px,10vw,150px);
+    line-height:.8;
+    letter-spacing:-7px;
+    text-transform:uppercase;
+    margin-bottom:120px;
+}
+
+.project{
+    min-height:100vh;
+    margin-bottom:150px;
+    display:flex;
+    align-items:center;
+    gap:7%;
+}
+
+.project:nth-child(even){
+    flex-direction:row-reverse;
+}
+
+.project-image{
+    width:60%;
+    height:650px;
+    overflow:hidden;
+    background:#171717;
+}
+
+.project-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.2);
+}
+
+.project-info{
+    width:35%;
+}
+
+.project-number{
+    font-size:14px;
+    color:#666;
+    margin-bottom:20px;
+}
+
+.project-name{
+    font-size:clamp(35px,4vw,70px);
+    line-height:.95;
+    margin-bottom:25px;
+}
+
+.project-description{
+    color:#888;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.project-link{
+    display:inline-block;
+    border-bottom:1px solid white;
+    padding-bottom:8px;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills{
+    padding:150px 0;
+    overflow:hidden;
+}
+
+.skills-title{
+    padding:0 5%;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    color:#777;
+    margin-bottom:60px;
+}
+
+.skills-track{
+    display:flex;
+    width:max-content;
+    gap:50px;
+}
+
+.skill{
+    font-size:clamp(60px,8vw,130px);
+    font-weight:800;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+
+.skill-outline{
+    color:transparent;
+    -webkit-text-stroke:1px #555;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services{
+    padding:150px 5%;
+}
+
+.services-title{
+    font-size:clamp(60px,9vw,140px);
+    line-height:.85;
+    letter-spacing:-6px;
+    margin-bottom:100px;
+}
+
+.service-list{
+    border-top:1px solid #333;
+}
+
+.service{
+    border-bottom:1px solid #333;
+    padding:50px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.4s;
+}
+
+.service:hover{
+    padding-left:30px;
+}
+
+.service h3{
+    font-size:clamp(30px,4vw,60px);
+}
+
+.service span{
+    color:#666;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    min-height:100vh;
+    padding:150px 5%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+}
+
+.contact-title{
+    font-size:clamp(70px,13vw,200px);
+    line-height:.8;
+    letter-spacing:-10px;
+    text-transform:uppercase;
+}
+
+.contact-title span{
+    color:transparent;
+    -webkit-text-stroke:1px white;
+}
+
+.contact-email{
+    margin-top:80px;
+    font-size:20px;
+    color:#aaa;
+}
+
+.footer{
+    margin-top:120px;
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #333;
+    padding-top:30px;
+    color:#666;
+    font-size:13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:650px;
+    }
+
+    .hero-title{
+        letter-spacing:-4px;
+    }
+
+    .hero-circle{
+        width:280px;
+        height:280px;
+        right:-60px;
+        top:25%;
+    }
+
+    .about{
+        padding:100px 5%;
+    }
+
+    .about-text{
+        letter-spacing:-1px;
+    }
+
+    .project,
+    .project:nth-child(even){
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .project-image{
+        width:100%;
+        height:450px;
+    }
+
+    .project-info{
+        width:100%;
+    }
+
+    .projects{
+        padding-top:100px;
+    }
+
+    .services{
+        padding-top:100px;
+    }
+
+    .contact-title{
+        letter-spacing:-5px;
+    }
+
+    .footer{
+        flex-direction:column;
+        gap:15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ABI.
+    </div>
+
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-text">
+            Freelance Web Developer
+        </div>
+
+        <h1 class="hero-title">
+
+            <span>Digital</span>
+
+            <span class="outline">Experiences</span>
+
+            <span>That Move.</span>
+
+        </h1>
+
+        <p class="hero-description">
+            I design and develop modern websites, ecommerce experiences
+            and interactive web applications using Angular, React and modern
+            web technologies.
+        </p>
+
+    </div>
+
+    <div class="hero-circle"></div>
+
+    <div class="scroll-down">
+        ↓ Scroll to explore
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+    <div class="about-inner">
+
+        <div class="section-label">
+            01 — About Me
+        </div>
+
+        <h2 class="about-text">
+
+            I'm Abi, a
+            <span class="muted">frontend developer</span>
+            focused on creating
+            <span class="muted">clean, interactive</span>
+            and memorable digital experiences.
+
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="projects" id="projects">
+
+    <div class="section-label">
+        02 — Selected Work
+    </div>
+
+    <h2 class="projects-title">
+        Projects
+    </h2>
+
+
+    <!-- PROJECT 1 -->
+
+    <div class="project">
+
+        <div class="project-image">
+
+            <img
+            src="https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1600&auto=format&fit=crop"
+            alt="Website project">
+
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-number">
+                01 / 04
+            </div>
+
+            <h3 class="project-name">
+                Lytty CRM
+            </h3>
+
+            <p class="project-description">
+                Modern CRM interface developed using Angular
+                and Ng Zorro with a focus on usability and
+                responsive dashboard experiences.
+            </p>
+
+            <a href="#" class="project-link">
+                View Project →
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROJECT 2 -->
+
+    <div class="project">
+
+        <div class="project-image">
+
+            <img
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1600&auto=format&fit=crop"
+            alt="Ecommerce project">
+
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-number">
+                02 / 04
+            </div>
+
+            <h3 class="project-name">
+                Paragon
+            </h3>
+
+            <p class="project-description">
+                Ecommerce points-based mobile experience
+                developed using Angular, HTML and CSS.
+            </p>
+
+            <a href="#" class="project-link">
+                View Project →
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROJECT 3 -->
+
+    <div class="project">
+
+        <div class="project-image">
+
+            <img
+            src="https://images.unsplash.com/photo-1556742111-a301076d9d18?q=80&w=1600&auto=format&fit=crop"
+            alt="Ecommerce website">
+
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-number">
+                03 / 04
+            </div>
+
+            <h3 class="project-name">
+                Dewdays
+            </h3>
+
+            <p class="project-description">
+                Ecommerce website interface created with
+                Angular, HTML, CSS and Ng Zorro.
+            </p>
+
+            <a href="#" class="project-link">
+                View Project →
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROJECT 4 -->
+
+    <div class="project">
+
+        <div class="project-image">
+
+            <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop"
+            alt="Business website">
+
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-number">
+                04 / 04
+            </div>
+
+            <h3 class="project-name">
+                Business Web
+            </h3>
+
+            <p class="project-description">
+                Responsive business website designed with
+                HTML, CSS, JavaScript and Bootstrap.
+            </p>
+
+            <a href="#" class="project-link">
+                View Project →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section class="skills">
+
+    <div class="skills-title">
+        03 — Technologies
+    </div>
+
+    <div class="skills-track">
+
+        <div class="skill">
+            Angular
+        </div>
+
+        <div class="skill skill-outline">
+            React
+        </div>
+
+        <div class="skill">
+            JavaScript
+        </div>
+
+        <div class="skill skill-outline">
+            HTML
+        </div>
+
+        <div class="skill">
+            CSS
+        </div>
+
+        <div class="skill skill-outline">
+            Bootstrap
+        </div>
+
+        <div class="skill">
+            WordPress
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+
+    <div class="section-label">
+        04 — Services
+    </div>
+
+    <h2 class="services-title">
+        What I<br>
+        Create.
+    </h2>
+
+    <div class="service-list">
+
+        <div class="service">
+            <h3>Websites</h3>
+            <span>01</span>
+        </div>
+
+        <div class="service">
+            <h3>Ecommerce</h3>
+            <span>02</span>
+        </div>
+
+        <div class="service">
+            <h3>Web Applications</h3>
+            <span>03</span>
+        </div>
+
+        <div class="service">
+            <h3>UI / UX</h3>
+            <span>04</span>
+        </div>
+
+        <div class="service">
+            <h3>WordPress</h3>
+            <span>05</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div class="section-label">
+        05 — Let's Work Together
+    </div>
+
+    <h2 class="contact-title">
+
+        Have a
+        <span>Project?</span>
+
+    </h2>
+
+    <a href="mailto:your@email.com" class="contact-email">
+        your@email.com →
+    </a>
+
+    <div class="footer">
+
+        <span>
+            © 2026 Abi
+        </span>
+
+        <span>
+            Frontend Developer / Freelancer
+        </span>
+
+    </div>
+
+</section>
+
+
+<script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+/* =========================
+   HERO ANIMATION
+========================= */
+
+gsap.from(".hero-title span", {
+
+    y:120,
+    opacity:0,
+    duration:1.2,
+    stagger:.15,
+    ease:"power4.out"
+
+});
+
+
+gsap.from(".hero-description", {
+
+    y:40,
+    opacity:0,
+    duration:1,
+    delay:.7,
+    ease:"power3.out"
+
+});
+
+
+/* =========================
+   HERO IMAGE PARALLAX
+========================= */
+
+gsap.to(".hero-circle", {
+
+    y:200,
+    rotation:30,
+    scale:1.2,
+
+    scrollTrigger:{
+        trigger:".hero",
+        start:"top top",
+        end:"bottom top",
+        scrub:1
+    }
+
+});
+
+
+/* =========================
+   ABOUT TEXT
+========================= */
+
+gsap.from(".about-text", {
+
+    y:100,
+    opacity:0,
+
+    scrollTrigger:{
+        trigger:".about",
+        start:"top 70%",
+        end:"top 30%",
+        scrub:1
+    }
+
+});
+
+
+/* =========================
+   PROJECT IMAGE ZOOM
+========================= */
+
+document.querySelectorAll(".project").forEach((project)=>{
+
+    const image = project.querySelector("img");
+
+    gsap.to(image,{
+
+        scale:1,
+
+        scrollTrigger:{
+            trigger:project,
+            start:"top 80%",
+            end:"bottom 20%",
+            scrub:1
+        }
+
+    });
+
+});
+
+
+/* =========================
+   PROJECT INFO REVEAL
+========================= */
+
+gsap.utils.toArray(".project-info").forEach((info)=>{
+
+    gsap.from(info,{
+
+        x:100,
+        opacity:0,
+
+        scrollTrigger:{
+            trigger:info,
+            start:"top 80%",
+            end:"top 45%",
+            scrub:1
+        }
+
+    });
+
+});
+
+
+/* =========================
+   SKILLS HORIZONTAL SCROLL
+========================= */
+
+gsap.to(".skills-track",{
+
+    xPercent:-35,
+
+    scrollTrigger:{
+
+        trigger:".skills",
+        start:"top bottom",
+        end:"bottom top",
+        scrub:1
+
+    }
+
+});
+
+
+/* =========================
+   SERVICES REVEAL
+========================= */
+
+gsap.utils.toArray(".service").forEach((service)=>{
+
+    gsap.from(service,{
+
+        y:80,
+        opacity:0,
+
+        scrollTrigger:{
+            trigger:service,
+            start:"top 90%",
+            end:"top 65%",
+            scrub:1
+        }
+
+    });
+
+});
+
+
+/* =========================
+   CONTACT ANIMATION
+========================= */
+
+gsap.from(".contact-title",{
+
+    y:150,
+    opacity:0,
+
+    scrollTrigger:{
+        trigger:".contact",
+        start:"top 70%",
+        end:"top 30%",
+        scrub:1
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```
